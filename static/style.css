@@ -77,36 +77,54 @@ footer {
     min-height: 100vh;
 }
 
-/* Сайдбар з кнопками */
-.sidebar {
-    width: 200px; /* ширина меню */
-    background-color: #222; /* темний фон */
-    padding: 20px;
-    display: flex;
-    flex-direction: column; /* вертикально */
-    gap: 10px; /* відстань між кнопками */
-}
-
-/* Стиль кнопок */
-.sidebar .btn {
-    display: block;
-    padding: 10px;
-    text-decoration: none;
-    color: white;
-    background-color: #8806A8;
-    text-align: center;
-    border-radius: 8px;
-    transition: background 0.3s;
-}
-
-.sidebar .btn:hover {
-    background-color: #aa33c0;
-}
-
 /* Основний контент */
 .main-content {
     flex: 1;
     padding: 20px;
     background-color: #111; /* темно-сірий фон */
     color: white;
+}
+.sidebar {
+    border: 2px solid #ccc;       /* сіра рамка */
+    border-radius: 12px;          /* закруглення */
+    padding: 10px;                /* відступи всередині */
+    width: 180px;                 /* щоб рівно виглядало */
+    background: #f9f9f9;          /* легкий фон */
+}
+
+.sidebar .btn {
+    display: block;
+    margin: 8px 0;
+    padding: 10px;
+    text-align: center;
+    border-radius: 8px;
+    text-decoration: none;
+    color: #333;
+    background: #eee;
+    transition: 0.3s;
+}
+
+.sidebar .btn:hover {
+    background: #ddd;
+}
+.btn-purple {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 10px 0;
+    border-radius: 8px;
+    text-decoration: none;
+    color: #fff;
+    background-color: #8806A8;  /* фіолетовий */
+    transition: background 0.3s ease;
+}
+
+.btn-purple:hover {
+    background-color: #6a0485;  /* темніший при наведенні */
+}
+.youtube-video-header {
+    margin: 10px auto;
+    text-align: center;
+}
+.youtube-video-header iframe {
+    border-radius: 10px; /* закруглені кути */
 }
