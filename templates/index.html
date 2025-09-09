@@ -1,13 +1,24 @@
 {% extends "base.html" %}
+
+{% block title %}{{ name }} — Весільний фотограф{% endblock %}
+
 {% block content %}
-<h1>Весільна фотографія — {{ name }}</h1>
-<p>Ласкаво просимо! Ось останні роботи:</p>
-<div class="grid">
-  {% for img in images %}
-    <a class="thumb" href="{{ url_for('uploaded_file', filename=img) }}">
-      <img src="{{ url_for('uploaded_file', filename=img) }}" alt="">
-    </a>
-  {% endfor %}
-</div>
-<p><a href="{{ url_for('gallery') }}">Всі фото →</a></p>
+<section class="hero">
+    <div class="profile">
+        <img src="{{ url_for('static', filename='profile.jpg') }}" alt="{{ name }}">
+    </div>
+    <h1>{{ name }}</h1>
+    <p class="subtitle">Весільний та портретний фотограф</p>
+</section>
+
+<section id="gallery" class="gallery">
+    <h2>Мої роботи</h2>
+    <div class="grid">
+        {% for img in images %}
+        <div class="card">
+            <img src="{{ url_for('static', filename=img) }}" alt="photo">
+        </div>
+        {% endfor %}
+    </div>
+</section>
 {% endblock %}
