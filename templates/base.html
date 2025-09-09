@@ -13,15 +13,20 @@
     <div class="header-content">
         <img src="{{ url_for('static', filename=profile.jpg'}}" class="thumb" onclick="openFullscreen(this)"></n>
         <h1>Любомир Казюк</h1>
-        <nav>
-            <center>
-            <a href="{{ url_for('index') }}">Головна</a>
-            <a href="{{ url_for('gallery') }}">Галерея</a>
-            <a href="{{ url_for('about') }}">Про мене</a>
-            <a href="{{ url_for('contact') }}">Контакти</a>
-            <a href="{{ url_for('upload') }}">Завантажити</a>
-            </center>
-        </nav>
+        <div class="container">
+    <div class="sidebar">
+        <a href="{{ url_for('index') }}" class="btn">Головна</a>
+        <a href="{{ url_for('about') }}" class="btn">Про мене</a>
+        <a href="{{ url_for('gallery') }}" class="btn">Галерея</a>
+        <a href="{{ url_for('contact') }}" class="btn">Контакти</a>
+        <a href="{{ url_for('upload') }}" class="btn">Завантажити</a>
+    </div>
+
+    <div class="main-content">
+        {% block content %}{% endblock %}
+    </div>
+</div>
+
     </div>
 </header>
 <main>
