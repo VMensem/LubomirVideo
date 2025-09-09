@@ -1,73 +1,55 @@
-from flask import Flask, render_template, request, redirect, url_for
-from datetime import datetime
+from flask import Flask, render_template, request, redirect, url_for, flash
 import os
 from werkzeug.utils import secure_filename
 
 app = Flask(__name__)
+app.secret_key = "any-secret-key"
 
 UPLOAD_FOLDER = "static/uploads"
-ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif', 'mp4', 'mov', 'avi'}
-app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+ALLOWED_EXTENSIONS = {"png", "jpg", "jpeg", "gif", "mp4", "mov"}
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
-media = []  # Список фото/видео (локальных и YouTube)
-
 def allowed_file(filename):
-    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
-
-ADMIN_USER = os.environ.get("ADMIN_USER", "admin")
-ADMIN_PASS = os.environ.get("ADMIN_PASSWORD", "Lubomirk2025")
+    return "." in filename and filename.rsplit(".", 1)[1].lower() in ALLOWED_EXTENSIONS
 
 @app.context_processor
 def inject_now():
-    return {'now': datetime.now()}
+    from datetime import datetime
+    return {"now": datetime.utcnow()}
 
 @app.route("/")
 def index():
-    return render_template("index.html", media=media[:12], name=os.environ.get("PHOTOGRAPHER_NAME", "Любомир Казюк"), title="Головна")
-
-@app.route("/about")
-def about():
-    return render_template("about.html", name=os.environ.get("PHOTOGRAPHER_NAME", "Любомир Казюк"), title="Про мене")
-
-@app.route("/contact")
-def contact():
-    return render_template("contact.html", name=os.environ.get("PHOTOGRAPHER_NAME", "Любомир Казюк"), title="Контакти")
+    images = sorted([f for f in os.listdir(UPLOAD_FOLDER) if f.lower().endswith(("png","jpg","jpeg","gif"))])
+    videos = sorted([f for f in os.listdir(UPLOAD_FOLDER) if f.lower().endswith(("mp4","mov"))])
+    return render_template("index.html", images=images, videos=videos, name=os.environ.get("PHOTOGRAPHER_NAME","Любомир Казюк"))
 
 @app.route("/gallery")
 def gallery():
-    return render_template("gallery.html", media=media, name=os.environ.get("PHOTOGRAPHER_NAME", "Любомир Казюк"), title="Галерея")
+    files = sorted(os.listdir(UPLOAD_FOLDER))
+    return render_template("gallery.html", files=files)
+
+@app.route("/about")
+def about():
+    return render_template("about.html")
+
+@app.route("/contact")
+def contact():
+    return render_template("contact.html")
 
 @app.route("/upload", methods=["GET", "POST"])
 def upload():
-    error = None
     if request.method == "POST":
-        username = request.form.get("username")
+        login = request.form.get("login")
         password = request.form.get("password")
-        file = request.files.get("file")
-        youtube = request.form.get("youtube")  # Новое поле для YouTube
-
-        if username != ADMIN_USER or password != ADMIN_PASSWORD:
-            error = "Невірний логін або пароль"
-        elif file and allowed_file(file.filename):
-            filename = secure_filename(file.filename)
-            file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
-            file.save(file_path)
-            media.append({"type": "file", "url": f"/{file_path.replace(os.sep, '/')}", "name": filename})
-            return redirect(url_for('gallery'))
-        elif youtube:
-            # Конвертируем ссылку в embed URL
-            if "youtube.com/watch?v=" in youtube:
-                video_id = youtube.split("watch?v=")[-1].split("&")[0]
-                embed_url = f"https://www.youtube.com/embed/{video_id}"
-                media.append({"type": "youtube", "url": embed_url})
-                return redirect(url_for('gallery'))
+        if login == os.environ.get("ADMIN_USER") and password == os.environ.get("ADMIN_PASSWORD"):
+            file = request.files.get("file")
+            if file and allowed_file(file.filename):
+                filename = secure_filename(file.filename)
+                file.save(os.path.join(UPLOAD_FOLDER, filename))
+                flash(f"Файл {filename} успішно завантажено!")
+                return redirect(url_for("upload"))
             else:
-                error = "Невірна YouTube ссылка"
+                flash("Невірний тип файлу або файл не вибрано")
         else:
-            error = "Файл або YouTube ссылка не вибрано"
-
-    return render_template("upload.html", error=error, name=os.environ.get("PHOTOGRAPHER_NAME", "Любомир Казюк"), title="Завантаження")
-
-if __name__ == "__main__":
-    app.run(debug=True)
+            flash("Невірний логін або пароль")
+    return render_template("upload.html")
