@@ -1,45 +1,37 @@
-/* Загальні стилі */
 body {
     background-color: #121212;
-    color: #ddd;
+    color: #fff;
     font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
 }
 
-/* Header */
-header {
-    background-color: #8806A8;
-    padding: 15px 30px;
-}
-
-/* Контейнер header: фото, відео, кнопки */
 .header-grid {
     display: flex;
-    align-items: flex-start;
     justify-content: space-between;
-    flex-wrap: wrap;
+    align-items: flex-start;
     gap: 20px;
+    padding: 20px;
+    background-color: #8806A8;
 }
 
-/* Ліва колонка: фото і ім'я */
+/* Ліворуч: фото та ім'я */
 .header-left {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 .header-left img.thumb {
-    width: 120px;
-    height: 120px;
+    width: 300px;
+    height: 300px;
     object-fit: cover;
     border-radius: 12px;
     cursor: pointer;
     box-shadow: 0 4px 8px rgba(0,0,0,0.5);
 }
 .header-left h1 {
-    margin-top: 10px;
-    font-size: 20px;
-    color: #fff;
+    margin-top: 15px;
+    font-size: 24px;
     text-align: center;
 }
 
@@ -51,8 +43,8 @@ header {
     align-items: center;
 }
 .header-center iframe {
-    width: 420px;
-    height: 240px;
+    width: 600px;
+    height: 340px;
     border-radius: 12px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.5);
 }
@@ -62,20 +54,72 @@ header {
     display: flex;
     flex-direction: column;
     gap: 12px;
+    align-items: center;
 }
 .header-right .btn-purple {
-    display: inline-block;
-    padding: 10px 20px;
+    display: block;
+    width: 180px;
+    padding: 12px;
     border-radius: 8px;
     text-decoration: none;
     color: #fff;
     background-color: #8806A8;
-    transition: 0.3s ease;
     text-align: center;
+    font-weight: bold;
+    transition: all 0.3s ease;
 }
 .header-right .btn-purple:hover {
     background-color: #6a0485;
     transform: scale(1.05);
+}
+
+/* Основний контент */
+.main-content {
+    padding: 20px;
+    background-color: #111;
+    color: #fff;
+}
+
+/* Footer */
+footer {
+    background-color: #8806A8;
+    text-align: center;
+    padding: 15px;
+    font-size: 14px;
+}
+
+/* Fullscreen модалка */
+.fullscreen-modal {
+    position: fixed;
+    top:0; left:0;
+    width:100%; height:100%;
+    background: rgba(0,0,0,0.95);
+    display:flex; align-items:center; justify-content:center;
+    z-index:1000;
+}
+.fullscreen-modal img, .fullscreen-modal video {
+    max-width: 90%;
+    max-height: 90%;
+    border-radius: 10px;
+}
+
+/* Адаптивність */
+@media (max-width: 1200px) {
+    .header-grid {
+        flex-direction: column;
+        align-items: center;
+    }
+    .header-center iframe {
+        width: 90%;
+        height: auto;
+    }
+    .header-left img.thumb {
+        width: 80%;
+        height: auto;
+    }
+    .header-right .btn-purple {
+        width: 60%;
+    }
 }
 
 /* Sidebar */
@@ -107,14 +151,6 @@ header {
     padding: 20px;
     background-color: #111;
     color: #fff;
-}
-
-/* Footer */
-footer {
-    background-color: #8806A8;
-    text-align: center;
-    padding: 15px;
-    font-size: 14px;
 }
 
 /* Gallery */
