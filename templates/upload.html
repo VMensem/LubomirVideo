@@ -1,11 +1,12 @@
 {% extends "base.html" %}
 {% block content %}
-<h2>Завантаження файлів</h2>
+<h2>Завантаження файлів / YouTube відео</h2>
 <form method="post" enctype="multipart/form-data">
     <input type="text" name="login" placeholder="Логін">
     <input type="password" name="password" placeholder="Пароль">
     <input type="file" name="file">
-    <button type="submit">Завантажити</button>
+    <input type="text" name="youtube_link" placeholder="Посилання на YouTube">
+    <button type="submit">Додати</button>
 </form>
 {% with messages = get_flashed_messages() %}
     {% if messages %}
