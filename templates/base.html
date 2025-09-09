@@ -11,18 +11,15 @@
 
 <header>
     <div class="header-grid">
-        <!-- Ліва колонка: Фото + ім'я -->
+        <!-- Ліва колонка: фото та ім'я -->
         <div class="header-left">
-            <img src="{{ url_for('static', filename='profile.jpg') }}" class="profile-pic" onclick="openFullscreen(this)">
-            <div class="username">Любомир Казюк</div>
+            <img src="{{ url_for('static', filename='profile.jpg') }}" class="thumb" onclick="openFullscreen(this)">
+            <h1>Любомир Казюк</h1>
         </div>
 
-        <!-- Центр: Відео -->
+        <!-- Центр: відео -->
         <div class="header-center">
-            <iframe width="420" height="240"
-                    src="https://www.youtube.com/embed/0KvAAmbhjoU"
-                    frameborder="0" allowfullscreen>
-            </iframe>
+            <iframe src="https://www.youtube.com/embed/0KvAAmbhjoU" frameborder="0" allowfullscreen></iframe>
         </div>
 
         <!-- Права колонка: кнопки -->
@@ -36,29 +33,24 @@
     </div>
 </header>
 
-<main>
-    <div class="main-content">
-        {% block content %}{% endblock %}
-    </div>
+<main class="main-content">
+    {% block content %}{% endblock %}
 </main>
 
 <footer>
-    <p>© Любомир Казюк — Усі права захищені</p>
+    © Любомир Казюк — Усі права захищені
 </footer>
 
 <script>
 function openFullscreen(el) {
-    if (el.tagName === "IMG") {
-        const modal = document.createElement('div');
-        modal.classList.add('fullscreen-modal');
+    const modal = document.createElement('div');
+    modal.classList.add('fullscreen-modal');
+    if(el.tagName === "IMG") {
         modal.innerHTML = `<img src="${el.src}" onclick="this.parentElement.remove()">`;
-        document.body.appendChild(modal);
-    } else if (el.tagName === "VIDEO") {
-        const modal = document.createElement('div');
-        modal.classList.add('fullscreen-modal');
+    } else if(el.tagName === "VIDEO") {
         modal.innerHTML = `<video src="${el.querySelector('source').src}" controls autoplay onclick="this.parentElement.remove()"></video>`;
-        document.body.appendChild(modal);
     }
+    document.body.appendChild(modal);
 }
 </script>
 
