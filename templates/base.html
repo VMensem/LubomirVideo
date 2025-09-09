@@ -8,6 +8,10 @@
 </head>
 <body>
 <header>
+    <div class="header-left">
+        <img src="{{ url_for('static', filename='profile.jpg') }}" alt="Любомир Казюк" class="header-profile">
+        <h1>{{ name }}</h1>
+    </div>
     <nav>
         <a href="{{ url_for('index') }}">Головна</a>
         <a href="{{ url_for('about') }}">Про мене</a>
