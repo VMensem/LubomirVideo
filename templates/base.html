@@ -21,16 +21,10 @@
         <a href="{{ url_for('contact') }}" class="btn">Контакти</a>
         <a href="{{ url_for('upload') }}" class="btn">Завантажити</a>
     </div>
-
-    <div class="main-content">
-        {% block content %}{% endblock %}
-    </div>
-</div>
-
-    </div>
 </header>
 <main>
-    {% block content %}{% endblock %}
+       <div class="main-content">
+        {% block content %}{% endblock %}
 </main>
 <footer>
     <p>© Любомир Казюк — Усі права захищені</p>
