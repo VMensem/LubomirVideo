@@ -1,3 +1,4 @@
+/* Загальні стилі */
 body {
     background-color: #121212;
     color: #ddd;
@@ -5,36 +6,121 @@ body {
     margin: 0;
     padding: 0;
 }
+
+/* Header */
 header {
     background-color: #8806A8;
     padding: 15px 30px;
+}
+
+/* Контейнер header: фото, відео, кнопки */
+.header-grid {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
 }
-header h1 {
-    margin: 0 20px;
-    color: #fff;
-    font-size: 28px;
+
+/* Ліва колонка: фото і ім'я */
+.header-left {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
-header nav a {
+.header-left img.thumb {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 12px;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+}
+.header-left h1 {
+    margin-top: 10px;
+    font-size: 20px;
     color: #fff;
+    text-align: center;
+}
+
+/* Центр: відео */
+.header-center {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.header-center iframe {
+    width: 420px;
+    height: 240px;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+}
+
+/* Права колонка: кнопки */
+.header-right {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+.header-right .btn-purple {
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 8px;
     text-decoration: none;
-    margin: 0 12px;
-    font-weight: bold;
+    color: #fff;
+    background-color: #8806A8;
+    transition: 0.3s ease;
+    text-align: center;
 }
-header nav a:hover {
-    color: #ffcc00;
+.header-right .btn-purple:hover {
+    background-color: #6a0485;
+    transform: scale(1.05);
 }
+
+/* Sidebar */
+.sidebar {
+    border: 2px solid #ccc;
+    border-radius: 12px;
+    padding: 10px;
+    width: 180px;
+    background: #f9f9f9;
+}
+.sidebar .btn {
+    display: block;
+    margin: 8px 0;
+    padding: 10px;
+    text-align: center;
+    border-radius: 8px;
+    text-decoration: none;
+    color: #333;
+    background: #eee;
+    transition: 0.3s;
+}
+.sidebar .btn:hover {
+    background: #ddd;
+}
+
+/* Основний контент */
+.main-content {
+    flex: 1;
+    padding: 20px;
+    background-color: #111;
+    color: #fff;
+}
+
+/* Footer */
 footer {
     background-color: #8806A8;
     text-align: center;
     padding: 15px;
     font-size: 14px;
 }
+
+/* Gallery */
 .gallery {
     display: grid;
-    grid-template-columns: repeat(auto-fill,minmax(220px,1fr));
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
     gap: 15px;
     padding: 20px;
 }
@@ -52,6 +138,8 @@ footer {
     border-radius: 50%;
     border: 2px solid #fff;
 }
+
+/* Fullscreen модалка */
 .fullscreen-modal {
     position: fixed;
     top:0; left:0;
@@ -65,66 +153,36 @@ footer {
     max-height: 90%;
     border-radius: 10px;
 }
+
+/* Flash messages */
 .flash-messages {
     margin-top: 15px;
     list-style: none;
     padding: 0;
     color: #ff5555;
 }
-/* Контейнер з боковим меню і основним контентом */
-.container {
-    display: flex;
-    min-height: 100vh;
-}
 
-/* Основний контент */
-.main-content {
-    flex: 1;
-    padding: 20px;
-    background-color: #111; /* темно-сірий фон */
-    color: white;
-}
-.sidebar {
-    border: 2px solid #ccc;       /* сіра рамка */
-    border-radius: 12px;          /* закруглення */
-    padding: 10px;                /* відступи всередині */
-    width: 180px;                 /* щоб рівно виглядало */
-    background: #f9f9f9;          /* легкий фон */
-}
-
-.sidebar .btn {
-    display: block;
-    margin: 8px 0;
-    padding: 10px;
-    text-align: center;
-    border-radius: 8px;
-    text-decoration: none;
-    color: #333;
-    background: #eee;
-    transition: 0.3s;
-}
-
-.sidebar .btn:hover {
-    background: #ddd;
-}
-.btn-purple {
-    display: inline-block;
-    padding: 10px 20px;
-    margin: 10px 0;
-    border-radius: 8px;
-    text-decoration: none;
-    color: #fff;
-    background-color: #8806A8;  /* фіолетовий */
-    transition: background 0.3s ease;
-}
-
-.btn-purple:hover {
-    background-color: #6a0485;  /* темніший при наведенні */
-}
+/* YouTube video header */
 .youtube-video-header {
     margin: 10px auto;
     text-align: center;
 }
 .youtube-video-header iframe {
-    border-radius: 10px; /* закруглені кути */
+    border-radius: 10px;
+}
+
+/* Адаптивність */
+@media (max-width: 900px) {
+    .header-grid {
+        flex-direction: column;
+        align-items: center;
+    }
+    .header-center iframe {
+        width: 320px;
+        height: 180px;
+    }
+    .header-right .btn-purple {
+        width: 200px;
+        text-align: center;
+    }
 }
