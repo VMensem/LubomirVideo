@@ -2,28 +2,27 @@
 <html lang="uk">
 <head>
     <meta charset="UTF-8">
-    <title>{% block title %}Студія Любомира Казюка{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }} — {{ name }}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <!-- Верхня шапка з меню -->
-    <header class="header">
-        <div class="container">
-            <h1 class="logo">{{ name }}</h1>
-            <nav class="menu">
-                <a href="/">Головна</a>
-                <a href="#gallery">Галерея</a>
-                <a href="#contacts">Контакти</a>
-            </nav>
-        </div>
-    </header>
+<header>
+    <nav>
+        <a href="{{ url_for('index') }}">Головна</a>
+        <a href="{{ url_for('about') }}">Про мене</a>
+        <a href="{{ url_for('gallery') }}">Галерея</a>
+        <a href="{{ url_for('contact') }}">Контакти</a>
+        <a href="{{ url_for('upload') }}">Завантажити</a>
+    </nav>
+</header>
 
-    <!-- Контент сторінки -->
+<main>
     {% block content %}{% endblock %}
+</main>
 
-    <!-- Футер -->
-    <footer class="footer">
-        <p>© Любомир Казюк — Усі права захищені</p>
-    </footer>
+<footer>
+    <p>© {{ name }}, {{ now.year }} — Усі права захищені</p>
+</footer>
 </body>
 </html>
