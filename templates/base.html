@@ -1,57 +1,30 @@
 <!DOCTYPE html>
 <html lang="uk">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ title }} — {{ name }}</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{ title if title else "Любомир Казюк" }}</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
 <header>
-    <div class="header-left">
-        <img src="{{ url_for('static', filename='profile.jpg') }}" alt="Любомир Казюк" class="header-profile" onclick="openLightbox('{{ url_for('static', filename='profile.jpg') }}', 'image')">
+    <div class="header-content">
+        <img src="{{ url_for('static', filename='profile.jpg') }}" alt="Profile" class="profile-pic">
         <h1>{{ name }}</h1>
+        <nav>
+            <a href="{{ url_for('index') }}">Головна</a>
+            <a href="{{ url_for('gallery') }}">Галерея</a>
+            <a href="{{ url_for('about') }}">Про мене</a>
+            <a href="{{ url_for('contact') }}">Контакти</a>
+            <a href="{{ url_for('upload') }}">Завантажити</a>
+        </nav>
     </div>
-    <nav>
-        <a href="{{ url_for('index') }}">Головна</a>
-        <a href="{{ url_for('about') }}">Про мене</a>
-        <a href="{{ url_for('gallery') }}">Галерея</a>
-        <a href="{{ url_for('contact') }}">Контакти</a>
-        <a href="{{ url_for('upload') }}">Завантажити</a>
-    </nav>
 </header>
-
 <main>
     {% block content %}{% endblock %}
 </main>
-
 <footer>
-    <p>© Любомир Казюк — Усі права захищені</p>
+    <p>© {{ name }}, {{ now.year }} — Усі права захищені</p>
 </footer>
-
-<!-- Lightbox -->
-<div id="lightbox" class="lightbox" onclick="closeLightbox()">
-    <span class="close">&times;</span>
-    <div class="lightbox-content" id="lightbox-content"></div>
-</div>
-
-<script>
-function openLightbox(url, type) {
-    const content = document.getElementById('lightbox-content');
-    if (type === 'image') {
-        content.innerHTML = `<img src="${url}" alt="" class="lightbox-media">`;
-    } else if (type === 'video') {
-        content.innerHTML = `<video controls autoplay class="lightbox-media"><source src="${url}"></video>`;
-    } else if (type === 'youtube') {
-        content.innerHTML = `<iframe src="${url}" frameborder="0" allowfullscreen class="lightbox-media"></iframe>`;
-    }
-    document.getElementById('lightbox').style.display = 'flex';
-}
-
-function closeLightbox() {
-    document.getElementById('lightbox').style.display = 'none';
-    document.getElementById('lightbox-content').innerHTML = '';
-}
-</script>
 </body>
 </html>
