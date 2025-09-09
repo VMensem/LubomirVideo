@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>{{ title or name }}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <a class="logo" href="{{ url_for('index') }}">{{ name }}</a>
+      <nav>
+        <a href="{{ url_for('index') }}">Головна</a>
+        <a href="{{ url_for('gallery') }}">Галерея</a>
+        <a href="{{ url_for('about') }}">Про мене</a>
+        <a href="{{ url_for('contact') }}">Контакти</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <div class="flashes">
+          {% for category, msg in messages %}
+            <div class="flash {{ category }}">{{ msg }}</div>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      © {{ name }} — Весільна фотографія
+    </div>
+  </footer>
+</body>
+</html>

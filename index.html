@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Весільна фотографія — {{ name }}</h1>
+<p>Ласкаво просимо! Ось останні роботи:</p>
+<div class="grid">
+  {% for img in images %}
+    <a class="thumb" href="{{ url_for('uploaded_file', filename=img) }}">
+      <img src="{{ url_for('uploaded_file', filename=img) }}" alt="">
+    </a>
+  {% endfor %}
+</div>
+<p><a href="{{ url_for('gallery') }}">Всі фото →</a></p>
+{% endblock %}
