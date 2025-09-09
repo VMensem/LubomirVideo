@@ -3,38 +3,53 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<head>
-    <title>{{ title if title else "Любомир Казюк" }}</title>
-    <link rel="icon" href="{{ url_for('static', filename='profile.jpg') }}" type="image/png">
-    {% for link in youtube_links %}
-        <div class="youtube-video">
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/0KvAAmbhjoU?si=Ufwl6TXqmi4YTqJj" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-        </div>
-    {% endfor %}
-<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">   
+<title>{{ title if title else "Любомир Казюк" }}</title>
+<link rel="icon" href="{{ url_for('static', filename='profile.jpg') }}" type="image/png">
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
+
 <header>
-    <div class="header-content">
-        <img src="{{ url_for('static', filename='profile.jpg') }}" class="thumb" onclick="openFullscreen(this)">
-        <h1>Любомир Казюк</h1></div>
+    <div class="header-grid">
+        <!-- Фото -->
+        <div class="header-left">
+            <img src="{{ url_for('static', filename='profile.jpg') }}" class="thumb" onclick="openFullscreen(this)">
+        </div>
+
+        <!-- YouTube по центру з конкретною ссилкою -->
+        <div class="header-center">
+            <iframe width="420" height="240"
+                    src="https://www.youtube.com/embed/0KvAAmbhjoU"
+                    frameborder="0" allowfullscreen>
+            </iframe>
+        </div>
+
+        <!-- Ім’я -->
+        <div class="header-right">
+            <h1>Любомир Казюк</h1>
+        </div>
+    </div>
+
+    <!-- Бічне меню -->
     <div class="sidebar">
         <a href="{{ url_for('index') }}" class="btn">Головна</a>
-        <a href="{{ url_for('about') }}" class="btn">Про мене</a>
+        <a href="{{ url_for('about') }}" class="btn">Мої роботи</a>
         <a href="{{ url_for('gallery') }}" class="btn">Галерея</a>
         <a href="{{ url_for('contact') }}" class="btn">Контакти</a>
         <a href="{{ url_for('upload') }}" class="btn">Завантажити</a>
     </div>
 </header>
+
 <main>
-       <div class="main-content">
+    <div class="main-content">
         {% block content %}{% endblock %}
+    </div>
 </main>
+
 <footer>
     <p>© Любомир Казюк — Усі права захищені</p>
 </footer>
-</body>
-</html>
+
 <script>
 function openFullscreen(el) {
     if (el.tagName === "IMG") {
@@ -50,3 +65,6 @@ function openFullscreen(el) {
     }
 }
 </script>
+
+</body>
+</html>
