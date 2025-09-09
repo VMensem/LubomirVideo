@@ -32,3 +32,18 @@
 </footer>
 </body>
 </html>
+<script>
+function openFullscreen(el) {
+    if (el.tagName === "IMG") {
+        const modal = document.createElement('div');
+        modal.classList.add('fullscreen-modal');
+        modal.innerHTML = `<img src="${el.src}" onclick="this.parentElement.remove()">`;
+        document.body.appendChild(modal);
+    } else if (el.tagName === "VIDEO") {
+        const modal = document.createElement('div');
+        modal.classList.add('fullscreen-modal');
+        modal.innerHTML = `<video src="${el.querySelector('source').src}" controls autoplay onclick="this.parentElement.remove()"></video>`;
+        document.body.appendChild(modal);
+    }
+}
+</script>
