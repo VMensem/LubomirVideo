@@ -36,6 +36,7 @@ def about():
 def contact():
     return render_template("contact.html")
 
+# Добавляем поле youtube_link
 @app.route("/upload", methods=["GET", "POST"])
 def upload():
     if request.method == "POST":
@@ -43,13 +44,19 @@ def upload():
         password = request.form.get("password")
         if login == os.environ.get("ADMIN_USER") and password == os.environ.get("ADMIN_PASSWORD"):
             file = request.files.get("file")
+            youtube_link = request.form.get("youtube_link")
             if file and allowed_file(file.filename):
                 filename = secure_filename(file.filename)
                 file.save(os.path.join(UPLOAD_FOLDER, filename))
                 flash(f"Файл {filename} успішно завантажено!")
-                return redirect(url_for("upload"))
+            elif youtube_link:
+                # сохраняем ссылку в отдельный файл для галереи
+                with open(os.path.join(UPLOAD_FOLDER, "youtube_links.txt"), "a") as f:
+                    f.write(youtube_link + "\n")
+                flash("YouTube відео додано!")
             else:
-                flash("Невірний тип файлу або файл не вибрано")
+                flash("Невірний тип файлу або файл/посилання не вибрано")
+            return redirect(url_for("upload"))
         else:
             flash("Невірний логін або пароль")
     return render_template("upload.html")
