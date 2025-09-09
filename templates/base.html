@@ -3,20 +3,24 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>{{ title if title else "Любомир Казюк" }}</title>
+<head>
+    <title>{{ title if title else "Любомир Казюк" }}</title>
+    <link rel="icon" href="{{ url_for('static', filename='profile.jpg') }}" type="image/png">
 <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
 <header>
     <div class="header-content">
-        <img src="{{ url_for('static', filename='profile.jpg') }}" alt="Profile" class="profile-pic">
-        <h1>{{ name }}</h1>
+        <img src="{{ url_for('static', filename='profile.jpg') }}" alt="Profile" class="profile-pic"></n>
+        <h1>Любомир Казюк</h1>
         <nav>
+            <center>
             <a href="{{ url_for('index') }}">Головна</a>
             <a href="{{ url_for('gallery') }}">Галерея</a>
             <a href="{{ url_for('about') }}">Про мене</a>
             <a href="{{ url_for('contact') }}">Контакти</a>
             <a href="{{ url_for('upload') }}">Завантажити</a>
+            </center>
         </nav>
     </div>
 </header>
@@ -24,7 +28,7 @@
     {% block content %}{% endblock %}
 </main>
 <footer>
-    <p>© {{ name }}, {{ now.year }} — Усі права захищені</p>
+    <p>© Любомир Казюк — Усі права захищені</p>
 </footer>
 </body>
 </html>
