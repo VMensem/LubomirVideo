@@ -1,13 +1,14 @@
 {% extends "base.html" %}
 {% block content %}
-<h1>Завантаження файлів</h1>
+<h1>Завантаження файлів або YouTube відео</h1>
 {% if error %}
 <p class="error">{{ error }}</p>
 {% endif %}
 <form method="POST" enctype="multipart/form-data">
     <input type="text" name="username" placeholder="Логін" required>
     <input type="password" name="password" placeholder="Пароль" required>
-    <input type="file" name="file" required>
+    <input type="file" name="file">
+    <input type="text" name="youtube" placeholder="Вставте YouTube посилання">
     <button type="submit">Завантажити</button>
 </form>
 {% endblock %}
