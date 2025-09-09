@@ -8,13 +8,27 @@ body {
 
 header {
     background-color: #8806A8;
-    padding: 10px;
-    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+}
+
+.header-left img.header-profile {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    margin-right: 10px;
 }
 
 header nav a {
     color: #fff;
-    margin: 0 15px;
+    margin: 0 10px;
     text-decoration: none;
 }
 
@@ -26,9 +40,6 @@ footer {
     background-color: #8806A8;
     text-align: center;
     padding: 10px;
-    position: relative;
-    bottom: 0;
-    width: 100%;
 }
 
 .images-grid {
@@ -39,18 +50,10 @@ footer {
     margin: 20px 0;
 }
 
-.image-item img, .image-item video {
+.image-item img, .image-item video, .image-item iframe {
     max-width: 200px;
     max-height: 150px;
     border-radius: 10px;
-}
-
-.profile-circle img {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    display: block;
-    margin: 20px auto;
 }
 
 .error {
