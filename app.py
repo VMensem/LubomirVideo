@@ -25,8 +25,16 @@ def index():
 
 @app.route("/gallery")
 def gallery():
-    files = sorted(os.listdir(UPLOAD_FOLDER))
-    return render_template("gallery.html", files=files)
+    files = os.listdir(os.path.join("static", "uploads"))
+    
+    # Читаем youtube ссылки на сервере
+    youtube_links = []
+    youtube_file_path = os.path.join("static", "uploads", "youtube_links.txt")
+    if os.path.exists(youtube_file_path):
+        with open(youtube_file_path, "r") as f:
+            youtube_links = [line.strip() for line in f.readlines() if line.strip()]
+
+    return render_template("gallery.html", files=files, youtube_links=youtube_links)
 
 @app.route("/about")
 def about():
