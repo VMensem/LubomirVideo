@@ -1,41 +1,29 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="uk">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>{{ title or name }}</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <meta charset="UTF-8">
+    <title>{% block title %}{{ name }} — Фотограф{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-  <header class="site-header">
-    <div class="container">
-      <a class="logo" href="{{ url_for('index') }}">{{ name }}</a>
-      <nav>
-        <a href="{{ url_for('index') }}">Головна</a>
-        <a href="{{ url_for('gallery') }}">Галерея</a>
-        <a href="{{ url_for('about') }}">Про мене</a>
-        <a href="{{ url_for('contact') }}">Контакти</a>
-      </nav>
-    </div>
-  </header>
-
-  <main class="container">
-    {% with messages = get_flashed_messages(with_categories=true) %}
-      {% if messages %}
-        <div class="flashes">
-          {% for category, msg in messages %}
-            <div class="flash {{ category }}">{{ msg }}</div>
-          {% endfor %}
+    <!-- Верхня шапка з меню -->
+    <header class="header">
+        <div class="container">
+            <h1 class="logo">{{ name }}</h1>
+            <nav class="menu">
+                <a href="/">Головна</a>
+                <a href="#gallery">Галерея</a>
+                <a href="#contacts">Контакти</a>
+            </nav>
         </div>
-      {% endif %}
-    {% endwith %}
-    {% block content %}{% endblock %}
-  </main>
+    </header>
 
-  <footer class="site-footer">
-    <div class="container">
-      © {{ name }} — Весільна фотографія
-    </div>
-  </footer>
+    <!-- Контент сторінки -->
+    {% block content %}{% endblock %}
+
+    <!-- Футер -->
+    <footer class="footer">
+        <p>© {{ name }}, {{ now.year }} — Усі права захищені</p>
+    </footer>
 </body>
 </html>
