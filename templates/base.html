@@ -11,12 +11,13 @@
 
 <header>
     <div class="header-grid">
-        <!-- Фото -->
+        <!-- Ліва колонка: Фото + ім'я -->
         <div class="header-left">
-            <img src="{{ url_for('static', filename='profile.jpg') }}" class="thumb" onclick="openFullscreen(this)">
+            <img src="{{ url_for('static', filename='profile.jpg') }}" class="profile-pic" onclick="openFullscreen(this)">
+            <div class="username">Любомир Казюк</div>
         </div>
 
-        <!-- YouTube по центру з конкретною ссилкою -->
+        <!-- Центр: Відео -->
         <div class="header-center">
             <iframe width="420" height="240"
                     src="https://www.youtube.com/embed/0KvAAmbhjoU"
@@ -24,19 +25,14 @@
             </iframe>
         </div>
 
-        <!-- Ім’я -->
+        <!-- Права колонка: кнопки -->
         <div class="header-right">
-            <h1>Любомир Казюк</h1>
+            <a href="{{ url_for('index') }}" class="btn-purple">Головна</a>
+            <a href="{{ url_for('about') }}" class="btn-purple">Інформація</a>
+            <a href="{{ url_for('gallery') }}" class="btn-purple">Мої роботи</a>
+            <a href="{{ url_for('contact') }}" class="btn-purple">Контакти</a>
+            <a href="{{ url_for('upload') }}" class="btn-purple">Завантажити</a>
         </div>
-    </div>
-
-    <!-- Бічне меню -->
-    <div class="sidebar">
-        <a href="{{ url_for('index') }}" class="btn">Головна</a>
-        <a href="{{ url_for('about') }}" class="btn">Мої роботи</a>
-        <a href="{{ url_for('gallery') }}" class="btn">Галерея</a>
-        <a href="{{ url_for('contact') }}" class="btn">Контакти</a>
-        <a href="{{ url_for('upload') }}" class="btn">Завантажити</a>
     </div>
 </header>
 
