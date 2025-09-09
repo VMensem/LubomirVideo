@@ -71,3 +71,42 @@ footer {
     padding: 0;
     color: #ff5555;
 }
+/* Контейнер з боковим меню і основним контентом */
+.container {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* Сайдбар з кнопками */
+.sidebar {
+    width: 200px; /* ширина меню */
+    background-color: #222; /* темний фон */
+    padding: 20px;
+    display: flex;
+    flex-direction: column; /* вертикально */
+    gap: 10px; /* відстань між кнопками */
+}
+
+/* Стиль кнопок */
+.sidebar .btn {
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+    color: white;
+    background-color: #8806A8;
+    text-align: center;
+    border-radius: 8px;
+    transition: background 0.3s;
+}
+
+.sidebar .btn:hover {
+    background-color: #aa33c0;
+}
+
+/* Основний контент */
+.main-content {
+    flex: 1;
+    padding: 20px;
+    background-color: #111; /* темно-сірий фон */
+    color: white;
+}
