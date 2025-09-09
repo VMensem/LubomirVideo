@@ -10,20 +10,19 @@
             </video>
         {% endif %}
     {% endfor %}
+
+    {% set youtube_links = [] %}
+    {% try %}
+        {% for line in open('static/uploads/youtube_links.txt') %}
+            {% set _ = youtube_links.append(line.strip()) %}
+        {% endfor %}
+    {% except %}
+    {% endtry %}
+    
+    {% for link in youtube_links %}
+        <div class="youtube-video">
+            <iframe width="300" height="170" src="{{ link | replace('watch?v=', 'embed/') }}" frameborder="0" allowfullscreen></iframe>
+        </div>
+    {% endfor %}
 </div>
-<script>
-function openFullscreen(el) {
-    if (el.tagName === "IMG") {
-        const modal = document.createElement('div');
-        modal.classList.add('fullscreen-modal');
-        modal.innerHTML = `<img src="${el.src}" onclick="this.parentElement.remove()">`;
-        document.body.appendChild(modal);
-    } else if (el.tagName === "VIDEO") {
-        const modal = document.createElement('div');
-        modal.classList.add('fullscreen-modal');
-        modal.innerHTML = `<video src="${el.querySelector('source').src}" controls autoplay onclick="this.parentElement.remove()"></video>`;
-        document.body.appendChild(modal);
-    }
-}
-</script>
 {% endblock %}
