@@ -1,4 +1,74 @@
-/* Lightbox */
+/* ===== Общие стили ===== */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #1c1c1c; /* темно-серый фон */
+    color: #ffffff;            /* белый текст */
+}
+
+a {
+    color: #8806A8; /* фиолетовые ссылки */
+    text-decoration: none;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #1c1c1c;
+    padding: 20px 40px;
+    border-bottom: 2px solid #8806A8;
+}
+
+header h1 {
+    margin-left: 10px;
+}
+
+header nav a {
+    margin-left: 20px;
+    font-weight: bold;
+}
+
+header img.header-profile {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 2px solid #8806A8;
+}
+
+/* ===== Main content ===== */
+main {
+    padding: 20px 40px;
+}
+
+.images-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+}
+
+.images-grid img, .images-grid video, .images-grid iframe {
+    width: 100%;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+.images-grid img:hover, .images-grid video:hover, .images-grid iframe:hover {
+    transform: scale(1.05);
+}
+
+/* ===== Footer ===== */
+footer {
+    background-color: #8806A8;
+    color: #ffffff;
+    text-align: center;
+    padding: 15px 0;
+    margin-top: 30px;
+}
+
+/* ===== Lightbox ===== */
 .lightbox {
     display: none;
     position: fixed;
