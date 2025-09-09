@@ -6,7 +6,11 @@
 <head>
     <title>{{ title if title else "Любомир Казюк" }}</title>
     <link rel="icon" href="{{ url_for('static', filename='profile.jpg') }}" type="image/png">
-<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    {% for link in youtube_links %}
+        <div class="youtube-video">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/0KvAAmbhjoU?si=Ufwl6TXqmi4YTqJj" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">   
 </head>
 <body>
 <header>
