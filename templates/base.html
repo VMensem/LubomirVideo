@@ -9,7 +9,7 @@
 <body>
 <header>
     <div class="header-left">
-        <img src="{{ url_for('static', filename='profile.jpg') }}" alt="Любомир Казюк" class="header-profile">
+        <img src="{{ url_for('static', filename='profile.jpg') }}" alt="Любомир Казюк" class="header-profile" onclick="openLightbox('{{ url_for('static', filename='profile.jpg') }}', 'image')">
         <h1>{{ name }}</h1>
     </div>
     <nav>
@@ -26,7 +26,32 @@
 </main>
 
 <footer>
-    <p>© {{ name }}, {{ now.year }} — Усі права захищені</p>
+    <p>© Любомир Казюк — Усі права захищені</p>
 </footer>
+
+<!-- Lightbox -->
+<div id="lightbox" class="lightbox" onclick="closeLightbox()">
+    <span class="close">&times;</span>
+    <div class="lightbox-content" id="lightbox-content"></div>
+</div>
+
+<script>
+function openLightbox(url, type) {
+    const content = document.getElementById('lightbox-content');
+    if (type === 'image') {
+        content.innerHTML = `<img src="${url}" alt="" class="lightbox-media">`;
+    } else if (type === 'video') {
+        content.innerHTML = `<video controls autoplay class="lightbox-media"><source src="${url}"></video>`;
+    } else if (type === 'youtube') {
+        content.innerHTML = `<iframe src="${url}" frameborder="0" allowfullscreen class="lightbox-media"></iframe>`;
+    }
+    document.getElementById('lightbox').style.display = 'flex';
+}
+
+function closeLightbox() {
+    document.getElementById('lightbox').style.display = 'none';
+    document.getElementById('lightbox-content').innerHTML = '';
+}
+</script>
 </body>
 </html>
