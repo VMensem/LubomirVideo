@@ -6,12 +6,12 @@
         <div class="image-item">
             {% if item.type == "file" %}
                 {% if item.url.endswith(('.mp4','.mov','.avi')) %}
-                    <video controls src="{{ item.url }}"></video>
+                    <video onclick="openLightbox('{{ item.url }}', 'video')" src="{{ item.url }}"></video>
                 {% else %}
-                    <img src="{{ item.url }}" alt="{{ item.name }}">
+                    <img src="{{ item.url }}" alt="{{ item.name }}" onclick="openLightbox('{{ item.url }}', 'image')">
                 {% endif %}
             {% elif item.type == "youtube" %}
-                <iframe width="200" height="150" src="{{ item.url }}" frameborder="0" allowfullscreen></iframe>
+                <iframe onclick="openLightbox('{{ item.url }}', 'youtube')" width="300" height="200" src="{{ item.url }}" frameborder="0" allowfullscreen></iframe>
             {% endif %}
         </div>
     {% endfor %}
