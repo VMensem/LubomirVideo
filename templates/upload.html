@@ -1,9 +1,13 @@
 {% extends "base.html" %}
 {% block content %}
-<h2>Завантажити фото (адмін)</h2>
-<form method="post" enctype="multipart/form-data">
-  <input type="file" name="photo" accept="image/*" required><br><br>
-  <button type="submit">Завантажити</button>
+<h1>Завантаження файлів</h1>
+{% if error %}
+<p class="error">{{ error }}</p>
+{% endif %}
+<form method="POST" enctype="multipart/form-data">
+    <input type="text" name="username" placeholder="Логін" required>
+    <input type="password" name="password" placeholder="Пароль" required>
+    <input type="file" name="file" required>
+    <button type="submit">Завантажити</button>
 </form>
-<p>Адмін доступ через Basic Auth (логін/пароль у змінних оточення).</p>
 {% endblock %}
