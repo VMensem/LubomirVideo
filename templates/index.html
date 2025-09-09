@@ -1,13 +1,18 @@
 {% extends "base.html" %}
 {% block content %}
-<h1>Ласкаво просимо на сайт {{ name }}</h1>
-<div class="profile-circle">
-    <img src="{{ url_for('static', filename='profile.jpg') }}" alt="Моя фотографія">
-</div>
+<h2>Мої роботи</h2>
 <div class="images-grid">
-    {% for image in images %}
+    {% for item in media %}
         <div class="image-item">
-            <img src="{{ image.url }}" alt="{{ image.name }}">
+            {% if item.type == "file" %}
+                {% if item.url.endswith(('.mp4','.mov','.avi')) %}
+                    <video controls src="{{ item.url }}"></video>
+                {% else %}
+                    <img src="{{ item.url }}" alt="{{ item.name }}">
+                {% endif %}
+            {% elif item.type == "youtube" %}
+                <iframe width="200" height="150" src="{{ item.url }}" frameborder="0" allowfullscreen></iframe>
+            {% endif %}
         </div>
     {% endfor %}
 </div>
