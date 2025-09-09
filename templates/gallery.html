@@ -11,14 +11,6 @@
         {% endif %}
     {% endfor %}
 
-    {% set youtube_links = [] %}
-    {% try %}
-        {% for line in open('static/uploads/youtube_links.txt') %}
-            {% set _ = youtube_links.append(line.strip()) %}
-        {% endfor %}
-    {% except %}
-    {% endtry %}
-    
     {% for link in youtube_links %}
         <div class="youtube-video">
             <iframe width="300" height="170" src="{{ link | replace('watch?v=', 'embed/') }}" frameborder="0" allowfullscreen></iframe>
