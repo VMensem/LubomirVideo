@@ -63,13 +63,13 @@ body {
     border-radius: 8px;
     text-decoration: none;
     color: #fff;
-    background-color: #8806A8;
+    background-color: #6b0b0b;
     text-align: center;
     font-weight: bold;
     transition: all 0.3s ease;
 }
 .header-right .btn-purple:hover {
-    background-color: #6a0485;
+    background-color: #610a0a;
     transform: scale(1.05);
 }
 
@@ -219,6 +219,6 @@ footer {
 }
 
 .btn-purple:hover {
-    background-color: #6a0485;
+    background-color: #610a0a;
     transform: scale(1.1);
 }
