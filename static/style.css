@@ -222,3 +222,22 @@ footer {
     background-color: #610a0a;
     transform: scale(1.1);
 }
+.contacts {
+    text-align: center;
+}
+
+.contacts h2 {
+    font-size: 24px;  /* Розмір заголовку */
+    margin: 15px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.contacts .icon {
+    width: 1.6em;   /* Трохи більші за текст */
+    height: 1.6em;
+    margin-right: 10px;
+    object-fit: contain;  /* Щоб не спотворювались */
+    vertical-align: middle;
+}
