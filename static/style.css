@@ -6,6 +6,7 @@ body {
     padding: 0;
 }
 
+/* Header */
 .header-grid {
     display: flex;
     justify-content: space-between;
@@ -103,25 +104,6 @@ footer {
     border-radius: 10px;
 }
 
-/* Адаптивність */
-@media (max-width: 1200px) {
-    .header-grid {
-        flex-direction: column;
-        align-items: center;
-    }
-    .header-center iframe {
-        width: 90%;
-        height: auto;
-    }
-    .header-left img.thumb {
-        width: 80%;
-        height: auto;
-    }
-    .header-right .btn-purple {
-        width: 60%;
-    }
-}
-
 /* Sidebar */
 .sidebar {
     border: 2px solid #ccc;
@@ -145,14 +127,6 @@ footer {
     background: #ddd;
 }
 
-/* Основний контент */
-.main-content {
-    flex: 1;
-    padding: 20px;
-    background-color: #111;
-    color: #fff;
-}
-
 /* Gallery */
 .gallery {
     display: grid;
@@ -168,66 +142,13 @@ footer {
     box-shadow: 0 4px 8px rgba(0,0,0,0.6);
     cursor: pointer;
 }
-.profile-pic {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    border: 2px solid #fff;
-}
 
-/* Fullscreen модалка */
-.fullscreen-modal {
-    position: fixed;
-    top:0; left:0;
-    width:100%; height:100%;
-    background: rgba(0,0,0,0.95);
-    display:flex; align-items:center; justify-content:center;
-    z-index:1000;
-}
-.fullscreen-modal img, .fullscreen-modal video {
-    max-width: 90%;
-    max-height: 90%;
-    border-radius: 10px;
-}
-
-/* Flash messages */
-.flash-messages {
-    margin-top: 15px;
-    list-style: none;
-    padding: 0;
-    color: #ff5555;
-}
-
-/* YouTube video header */
-.youtube-video-header {
-    margin: 10px auto;
-    text-align: center;
-}
-.youtube-video-header iframe {
-    border-radius: 10px;
-}
-/* Кнопки фіолетові */
-.btn-purple {
-    display: inline-block;
-    padding: 10px 20px;
-    border-radius: 8px;
-    text-decoration: none;
-    color: #fff;
-    background-color: #6b0b0b;
-    transition: all 0.3s ease;
-    font-weight: bold;
-}
-
-.btn-purple:hover {
-    background-color: #610a0a;
-    transform: scale(1.1);
-}
+/* Контакти */
 .contacts {
     width: fit-content;
     margin: 0 auto;
     text-align: left;
 }
-
 .contact-item {
     display: flex;
     align-items: center;
@@ -236,43 +157,82 @@ footer {
 
 /* Всі іконки */
 .contact-item .icon {
-    width: 1.8em;           /* стандартний розмір для email та телефону */
+    width: 1.8em;           /* Email, Телефон, Facebook стандартно */
     height: 1.8em;
     margin-right: 12px;
     object-fit: contain;
     vertical-align: middle;
 }
 
-/* Текст h2 */
+/* Соцмережі (Instagram, TikTok) */
+.contact-item .social-icon {
+    width: 2.2em;                
+    height: 2.2em;
+    background-color: #111;
+    border-radius: 50%;
+    padding: 0.3em;
+    object-fit: contain;
+    margin-right: 12px;
+    max-width: 2.2em;
+}
+
+/* Текст */
 .contacts h2 {
-    color: white;   /* основний текст білий */
+    color: white;
     margin: 0;
 }
 
 /* Клікабельний текст */
 .contacts a {
-    color: #888;           /* сірий для емейлу, телефону та соцмереж */
+    color: #888;
     text-decoration: none;
 }
-
 .contacts a:hover {
-    color: #610a0a;        /* темно-червоний при наведенні */
-}
-/* Instagram та TikTok */
-.contact-item .social-icon {
-    width: 3em;                /* розмір іконки */
-    height: 3em;
-    background-color: #111;    /* темний фон для логотипу */
-    border-radius: 50%;        /* кругла форма */
-    padding: 0.4em;            /* відступ всередині кола */
-    object-fit: contain;       /* зберігаємо пропорції логотипу */
-    margin-right: 12px;
+    color: #610a0a;
 }
 
-/* Всі інші іконки (Email, Телефон, Facebook) залишаються стандартними */
-.contact-item .icon:not(.social-icon) {
-    width: 2em;
-    height: 2em;
-    margin-right: 12px;
-    object-fit: contain;
+/* Адаптивність для мобільних */
+@media (max-width: 1200px) {
+    .header-grid {
+        flex-direction: column;
+        align-items: center;
+    }
+    .header-center iframe {
+        width: 90%;
+        height: auto;
+    }
+    .header-left img.thumb {
+        width: 80%;
+        height: auto;
+    }
+    .header-right .btn-purple {
+        width: 60%;
+    }
+}
+
+/* Контакти на мобільних */
+@media (max-width: 600px) {
+    .contact-item {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .contact-item .social-icon {
+        width: 2.5em;  
+        height: 2.5em;
+        max-width: 2.5em;
+        margin-bottom: 6px;
+        margin-right: 0;
+    }
+
+    .contact-item .icon:not(.social-icon) {
+        width: 2em;
+        height: 2em;
+        margin-bottom: 6px;
+    }
+
+    .contacts h2 {
+        font-size: 1em;
+        text-align: center;
+    }
 }
