@@ -233,7 +233,7 @@ footer {
 }
 
 .contacts a:hover {
-    color: #ccc;            /* трохи сірий при наведенні */
+    color: #610a0a;            /* трохи сірий при наведенні */
 }
 .contact-item {
     display: flex;            /* ставимо іконку + текст в ряд */
