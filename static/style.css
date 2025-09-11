@@ -82,7 +82,7 @@ body {
 
 /* Footer */
 footer {
-    background-color: #8806A8;
+    background-color: #6b0b0b;
     text-align: center;
     padding: 15px;
     font-size: 14px;
@@ -213,7 +213,7 @@ footer {
     border-radius: 8px;
     text-decoration: none;
     color: #fff;
-    background-color: #8806A8;
+    background-color: #6b0b0b;
     transition: all 0.3s ease;
     font-weight: bold;
 }
