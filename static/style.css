@@ -223,27 +223,44 @@ footer {
     transform: scale(1.1);
 }
 .contacts {
-    width: fit-content;       /* ширина під контент */
-    margin: 0 auto;           /* вирівнює весь блок по центру сторінки */
-    text-align: left;         /* але всередині — по лівому краю */
-}
-.contacts a {
-    color: white;           /* білий текст */
-    text-decoration: none;  /* прибрати підкреслення */
+    width: fit-content;
+    margin: 0 auto;
+    text-align: left;
 }
 
-.contacts a:hover {
-    color: #610a0a;            /* трохи сірий при наведенні */
-}
 .contact-item {
-    display: flex;            /* ставимо іконку + текст в ряд */
-    align-items: center;      /* вирівнюємо по вертикалі */
+    display: flex;
+    align-items: center;
     margin: 12px 0;
 }
 
+/* Всі іконки */
 .contact-item .icon {
-    width: 1.6em;             /* однаковий розмір іконок */
-    height: 1.6em;
-    margin-right: 10px;
+    width: 1.8em;           /* стандартний розмір для email та телефону */
+    height: 1.8em;
+    margin-right: 12px;
     object-fit: contain;
+    vertical-align: middle;
+}
+
+/* Соцмережі трохи більші */
+.contact-item .social-icon {
+    width: 2em;
+    height: 2em;
+}
+
+/* Текст h2 */
+.contacts h2 {
+    color: white;   /* основний текст білий */
+    margin: 0;
+}
+
+/* Клікабельний текст */
+.contacts a {
+    color: #888;           /* сірий для емейлу, телефону та соцмереж */
+    text-decoration: none;
+}
+
+.contacts a:hover {
+    color: #610a0a;        /* темно-червоний при наведенні */
 }
