@@ -119,6 +119,11 @@ footer {
     object-fit: contain;
     margin-right: 12px;
 }
+}
+    .contact-item .ficon {
+        font-size: 1em;
+        margin-left: 12px;
+}
 
 /* Текст h2 */
 .contacts h2 {
@@ -175,7 +180,7 @@ footer {
         font-size: 1em;
         margin-left: 8px;
     }
-    .contact-item .ficon {
+    .contact-item ficon {
         font-size: 1em;
         margin-left: 12px;
     }
