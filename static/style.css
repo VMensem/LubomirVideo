@@ -243,12 +243,6 @@ footer {
     vertical-align: middle;
 }
 
-/* Соцмережі трохи більші */
-.contact-item .social-icon {
-    width: 2em;
-    height: 2em;
-}
-
 /* Текст h2 */
 .contacts h2 {
     color: white;   /* основний текст білий */
@@ -263,4 +257,22 @@ footer {
 
 .contacts a:hover {
     color: #610a0a;        /* темно-червоний при наведенні */
+}
+/* Instagram та TikTok */
+.contact-item .social-icon {
+    width: 3em;                /* розмір іконки */
+    height: 3em;
+    background-color: #111;    /* темний фон для логотипу */
+    border-radius: 50%;        /* кругла форма */
+    padding: 0.4em;            /* відступ всередині кола */
+    object-fit: contain;       /* зберігаємо пропорції логотипу */
+    margin-right: 12px;
+}
+
+/* Всі інші іконки (Email, Телефон, Facebook) залишаються стандартними */
+.contact-item .icon:not(.social-icon) {
+    width: 2em;
+    height: 2em;
+    margin-right: 12px;
+    object-fit: contain;
 }
