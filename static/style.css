@@ -87,7 +87,22 @@ footer {
     padding: 15px;
     font-size: 14px;
 }
-
+.btn-purple {
+    display: block;
+    width: 180px;
+    padding: 12px;
+    border-radius: 8px;
+    text-decoration: none;
+    color: #fff;
+    background-color: #6b0b0b;
+    text-align: center;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+.btn-purple:hover {
+    background-color: #610a0a;
+    transform: scale(1.05);
+}
 /* Контакти */
 .contacts {
     width: fit-content;
