@@ -184,8 +184,8 @@ footer {
 .upload-form .input-icon img {
     position: absolute;
     left: 10px;
-    width: 1em;           /* ширина як текст */
-    height: 1em;          /* висота як текст */
+    width: 2em;           /* ширина як текст */
+    height: 2em;          /* висота як текст */
     top: 50%;             /* вертикальне вирівнювання */
     transform: translateY(-50%); /* точно по центру */
     opacity: 0.8;
