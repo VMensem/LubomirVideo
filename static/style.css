@@ -87,22 +87,6 @@ footer {
     padding: 15px;
     font-size: 14px;
 }
-.btn-purple {
-    display: block;
-    width: 180px;
-    padding: 12px;
-    border-radius: 8px;
-    text-decoration: none;
-    color: #fff;
-    background-color: #6b0b0b;
-    text-align: center;
-    font-weight: bold;
-    transition: all 0.3s ease;
-}
-.btn-purple:hover {
-    background-color: #610a0a;
-    transform: scale(1.05);
-}
 
 /* Контакти */
 .contacts {
@@ -124,13 +108,10 @@ footer {
     object-fit: contain;
     vertical-align: middle;
 }
-/* Текст h2 */
 .contacts h2 {
     color: white;
     margin: 0;
 }
-
-/* Посилання */
 .contacts a {
     color: #888;
     text-decoration: none;
@@ -142,54 +123,17 @@ footer {
 /* Gallery */
 .gallery {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-    gap: 15px;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 10px;
     padding: 20px;
 }
-.gallery img {
+.gallery img.thumb,
+.gallery video.thumb {
     width: 100%;
-    height: 120px;
-    object-fit: cover;
+    height: auto;
     border-radius: 8px;
+    object-fit: cover;
     cursor: pointer;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.5);
-    transition: all 0.3s ease;
-}
-.gallery img:hover {
-    transform: scale(1.03);
-    box-shadow: 0 4px 10px rgba(0,0,0,0.5);
-}
-
-/* Адаптивність для мобільних */
-@media (max-width: 768px) {
-    .header-grid {
-        flex-direction: column;
-        align-items: center;
-    }
-    .header-left img.thumb {
-        width: 70%;
-        height: auto;
-    }
-    .header-center iframe {
-        width: 90%;
-        height: auto;
-    }
-    .header-right .btn-purple {
-        width: 80%;
-    }
-    .contacts {
-        width: 90%;
-    }
-    .contact-item h2 {
-        font-size: 1em;
-        margin-left: 8px;
-    }
-    .gallery {
-        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-    }
-    .gallery img {
-        height: 100px;
-    }
 }
 
 /* Upload form */
@@ -205,20 +149,18 @@ footer {
     position: relative;
     display: flex;
     align-items: center;
-    margin-bottom: 15px; /* відступ між полями */
+    margin-bottom: 15px;
 }
-
 .upload-form .input-icon img {
     position: absolute;
     left: 10px;
-    width: 2.5em;    /* іконка як текст */
+    width: 2.5em;
     height: 2.5em;
     opacity: 0.8;
 }
-
 .upload-form .input-icon input {
     width: 100%;
-    padding: 10px 10px 10px 3.5em; /* 2.5em іконка + запас */
+    padding: 10px 10px 10px 3.5em;
     border: none;
     border-radius: 8px;
     background-color: #222;
@@ -249,17 +191,11 @@ footer {
     transform: scale(1.05);
 }
 
-/* Fullscreen modal */
-.fullscreen-modal {
-    position: fixed;
-    top:0; left:0;
-    width:100%; height:100%;
-    background: rgba(0,0,0,0.95);
-    display:flex; align-items:center; justify-content:center;
-    z-index:1000;
-}
-.fullscreen-modal img, .fullscreen-modal video {
-    max-width: 90%;
-    max-height: 90%;
-    border-radius: 10px;
+/* Адаптивність */
+@media (max-width: 768px) {
+    .header-grid { flex-direction: column; align-items: center; }
+    .header-left img.thumb { width: 70%; height: auto; }
+    .header-center iframe { width: 90%; height: auto; }
+    .header-right .btn-purple { width: 80%; }
+    .contacts { width: 90%; }
 }
