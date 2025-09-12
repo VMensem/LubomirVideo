@@ -1,20 +1,11 @@
-{% extends "base.html" %}
-{% block content %}
-<div class="gallery">
-    {% for file in files %}
-        {% if file.lower().endswith(('png','jpg','jpeg','gif','bmp','webp','tiff','svg')) %}
-            <img src="{{ url_for('static', filename='uploads/' + file) }}" class="thumb" onclick="openFullscreen(this)">
-        {% elif file.lower().endswith(('mp4','avi','mov','mkv','wmv','flv','webm')) %}
-            <video class="thumb" onclick="openFullscreen(this)" controls>
-                <source src="{{ url_for('static', filename='uploads/' + file) }}" type="video/mp4">
-            </video>
-        {% endif %}
-    {% endfor %}
-
-    {% for link in youtube_links %}
+{% for link in youtube_links %}
+    {% if "youtube.com" in link %}
         <div class="youtube-video">
             <iframe width="300" height="170" src="{{ link | replace('watch?v=', 'embed/') }}" frameborder="0" allowfullscreen></iframe>
         </div>
-    {% endfor %}
-</div>
-{% endblock %}
+    {% elif "instagram.com" in link %}
+        <blockquote class="instagram-media" data-instgrm-permalink="{{ link }}" data-instgrm-version="14" style=" background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px rgba(0,0,0,0.5),0 1px 10px rgba(0,0,0,0.15); margin: 1px; max-width:540px; min-width:326px; padding:0; width:99.375%;">
+        </blockquote>
+    {% endif %}
+{% endfor %}
+<script async src="//www.instagram.com/embed.js"></script>
