@@ -6,7 +6,7 @@ app = Flask(__name__)
 app.secret_key = "any-secret-key"
 
 UPLOAD_FOLDER = "static/uploads"
-ALLOWED_EXTENSIONS = {"png", "jpg", "jpeg", "gif", "mp4", "mov"}
+ALLOWED_EXTENSIONS = { 'png', 'jpg', 'jpeg', 'gif', 'bmp', 'webp', 'tiff', 'svg', 'mp4', 'avi', 'mov', 'mkv', 'wmv', 'flv', 'webm' }
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
 def allowed_file(filename):
