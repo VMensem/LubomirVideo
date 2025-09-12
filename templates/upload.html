@@ -1,23 +1,38 @@
 {% extends "base.html" %}
 {% block content %}
-<div class="upload-container">
-    <h2>Завантаження файлів / YouTube відео</h2>
-    <form method="post" enctype="multipart/form-data" class="upload-form">
-        <input type="text" name="login" placeholder="Логін" required>
-        <input type="text" name="password" placeholder="Пароль" required>
-        <input type="file" name="file">
-        <input type="text" name="youtube_link" placeholder="Посилання на YouTube">
-        <button type="submit" class="btn-purple">Додати</button>
-    </form>
+<h2 style="text-align:center;">Завантаження файлів / YouTube відео</h2>
 
-    {% with messages = get_flashed_messages() %}
-        {% if messages %}
-            <ul class="flash-messages">
-                {% for msg in messages %}
-                    <li>{{ msg }}</li>
-                {% endfor %}
-            </ul>
-        {% endif %}
-    {% endwith %}
-</div>
+<form method="post" enctype="multipart/form-data" class="upload-form">
+    <div class="input-icon">
+        <input type="text" name="login" placeholder="Логін">
+        <img src="{{ url_for('static', filename='icons/login.png') }}" alt="login">
+    </div>
+
+    <div class="input-icon">
+        <input type="text" name="password" placeholder="Пароль">
+        <img src="{{ url_for('static', filename='icons/password.png') }}" alt="password">
+    </div>
+
+    <div class="input-icon">
+        <input type="file" name="file">
+        <img src="{{ url_for('static', filename='icons/file.png') }}" alt="file">
+    </div>
+
+    <div class="input-icon">
+        <input type="text" name="youtube_link" placeholder="Посилання на YouTube">
+        <img src="{{ url_for('static', filename='icons/youtube.png') }}" alt="youtube">
+    </div>
+
+    <button type="submit">Додати</button>
+</form>
+
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <ul class="flash-messages">
+            {% for msg in messages %}
+                <li>{{ msg }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% endwith %}
 {% endblock %}
