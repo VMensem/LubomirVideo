@@ -1,20 +1,23 @@
 {% extends "base.html" %}
 {% block content %}
-<h2>Завантаження файлів / YouTube відео</h2>
-<form method="post" enctype="multipart/form-data">
-    <input type="text" name="login" placeholder="Логін">
-    <input type="text" name="password" placeholder="Пароль">
-    <input type="file" name="file">
-    <input type="text" name="youtube_link" placeholder="Посилання на YouTube">
-    <button type="submit", class="btn">Додати</button>
-</form>
-{% with messages = get_flashed_messages() %}
-    {% if messages %}
-        <ul class="flash-messages">
-            {% for msg in messages %}
-                <li>{{ msg }}</li>
-            {% endfor %}
-        </ul>
-    {% endif %}
-{% endwith %}
+<div class="upload-container">
+    <h2>Завантаження файлів / YouTube відео</h2>
+    <form method="post" enctype="multipart/form-data" class="upload-form">
+        <input type="text" name="login" placeholder="Логін" required>
+        <input type="text" name="password" placeholder="Пароль" required>
+        <input type="file" name="file">
+        <input type="text" name="youtube_link" placeholder="Посилання на YouTube">
+        <button type="submit" class="btn-purple">Додати</button>
+    </form>
+
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul class="flash-messages">
+                {% for msg in messages %}
+                    <li>{{ msg }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+</div>
 {% endblock %}
