@@ -1,11 +1,36 @@
-{% for link in youtube_links %}
-    {% if "youtube.com" in link %}
-        <div class="youtube-video">
-            <iframe width="300" height="170" src="{{ link | replace('watch?v=', 'embed/') }}" frameborder="0" allowfullscreen></iframe>
-        </div>
-    {% elif "instagram.com" in link %}
-        <blockquote class="instagram-media" data-instgrm-permalink="{{ link }}" data-instgrm-version="14" style=" background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px rgba(0,0,0,0.5),0 1px 10px rgba(0,0,0,0.15); margin: 1px; max-width:540px; min-width:326px; padding:0; width:99.375%;">
-        </blockquote>
-    {% endif %}
-{% endfor %}
+{% extends "base.html" %}
+{% block content %}
+<div class="gallery">
+    <!-- Локальные файлы -->
+    {% for file in files %}
+        {% if file.lower().endswith(('png','jpg','jpeg','gif')) %}
+            <img src="{{ url_for('static', filename='uploads/' + file) }}" class="thumb" onclick="openFullscreen(this)">
+        {% elif file.lower().endswith(('mp4','mov','avi','mkv','wmv','flv','webm')) %}
+            <video class="thumb" onclick="openFullscreen(this)" controls>
+                <source src="{{ url_for('static', filename='uploads/' + file) }}">
+            </video>
+        {% endif %}
+    {% endfor %}
+
+    <!-- Ссылки на видео -->
+    {% for link in youtube_links %}
+        {% if "youtube.com" in link or "youtu.be" in link %}
+            <div class="youtube-video">
+                <iframe width="300" height="170" src="{{ link | replace('watch?v=', 'embed/') }}" frameborder="0" allowfullscreen></iframe>
+            </div>
+        {% elif "instagram.com" in link %}
+            <blockquote class="instagram-media" data-instgrm-permalink="{{ link }}" data-instgrm-version="14" style="background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px rgba(0,0,0,0.5),0 1px 10px rgba(0,0,0,0.15); margin: 1px; max-width:540px; min-width:326px; padding:0; width:99.375%;">
+            </blockquote>
+        {% elif "facebook.com" in link %}
+            <iframe src="https://www.facebook.com/plugins/video.php?href={{ link }}&show_text=0&width=300" width="300" height="170" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen></iframe>
+        {% elif "drive.google.com" in link or "dropbox.com" in link %}
+            <video class="thumb" controls>
+                <source src="{{ link }}">
+            </video>
+        {% endif %}
+    {% endfor %}
+</div>
+
+<!-- Скрипты для Instagram -->
 <script async src="//www.instagram.com/embed.js"></script>
+{% endblock %}
