@@ -2,18 +2,28 @@
 {% block content %}
 <div class="gallery">
     {% for file in files %}
-        {% if file.lower().endswith(('png','jpg','jpeg','gif')) %}
-            <img src="{{ url_for('static', filename='uploads/' + file) }}" class="thumb" onclick="openFullscreen(this)">
-        {% elif file.lower().endswith(('mp4','mov')) %}
-            <video class="thumb" onclick="openFullscreen(this)" controls>
+        {% if file.lower().endswith(('png','jpg','jpeg','gif','bmp','webp','tiff','svg')) %}
+            <img src="{{ url_for('static', filename='uploads/' + file) }}" class="thumb">
+        {% elif file.lower().endswith(('mp4','avi','mov','mkv','wmv','flv','webm')) %}
+            <video class="thumb" controls>
                 <source src="{{ url_for('static', filename='uploads/' + file) }}" type="video/mp4">
             </video>
         {% endif %}
     {% endfor %}
 
-    {% for link in youtube_links %}
+    {% for video in video_links %}
         <div class="youtube-video">
-            <iframe width="300" height="170" src="{{ link | replace('watch?v=', 'embed/') }}" frameborder="0" allowfullscreen></iframe>
+            {% if video.type == 'youtube' %}
+                <iframe width="300" height="170" src="{{ video.url | replace('watch?v=', 'embed/') }}" frameborder="0" allowfullscreen></iframe>
+            {% elif video.type == 'instagram' %}
+                <iframe src="https://www.instagram.com/p/{{ video.url.split('/')[-2] }}/embed" width="300" height="170" frameborder="0" allowfullscreen></iframe>
+            {% elif video.type == 'facebook' %}
+                <iframe src="https://www.facebook.com/plugins/video.php?href={{ video.url | urlencode }}" width="300" height="170" frameborder="0" allowfullscreen></iframe>
+            {% elif video.type == 'cloud' or video.type == 'direct' %}
+                <video width="300" height="170" controls>
+                    <source src="{{ video.url }}" type="video/mp4">
+                </video>
+            {% endif %}
         </div>
     {% endfor %}
 </div>
