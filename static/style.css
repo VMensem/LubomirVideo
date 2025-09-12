@@ -170,26 +170,25 @@ footer {
     position: relative;
     display: flex;
     align-items: center;
+    margin-bottom: 15px; /* відступ між полями */
 }
-.upload-form .input-icon input {
-    width: 100%;
-    padding: 10px 12px 10px 40px;
-    border-radius: 8px;
-    border: 1px solid #555;
-    background-color: #222;
-    color: #fff;
-    font-size: 16px;
-    transition: all 0.3s ease;
-}
+
 .upload-form .input-icon img {
     position: absolute;
     left: 10px;
-    width: 2.5em;           /* ширина як текст */
-    height: 2.5em;          /* висота як текст */
-    top: 50%;             /* вертикальне вирівнювання */
-    transform: translateY(-50%); /* точно по центру */
+    width: 2.5em;    /* іконка тепер як текст */
+    height: 2.5em;
     opacity: 0.8;
-    transition: all 0.3s ease;
+}
+
+.upload-form .input-icon input {
+    width: 100%;
+    padding: 10px 10px 10px 40px; /* відступ зліва, щоб текст не заходив на іконку */
+    border: none;
+    border-radius: 8px;
+    background-color: #222;
+    color: #fff;
+    font-size: 16px;
 }
 .upload-form .input-icon input:hover {
     background-color: #333;
