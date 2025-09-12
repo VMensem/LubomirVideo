@@ -1,36 +1,25 @@
 {% extends "base.html" %}
 {% block content %}
-<h2 style="text-align:center;">Завантаження фото / відео</h2>
+<h2 style="text-align:center;">Завантаження фото / YouTube відео</h2>
 
 <form method="post" enctype="multipart/form-data" class="upload-form">
-    <!-- Логін -->
     <div class="input-icon">
         <input type="text" name="login" placeholder="Логін">
         <img src="https://cdn-icons-png.flaticon.com/512/14293/14293697.png" alt="login">
     </div>
-
-    <!-- Пароль (не прихований) -->
     <div class="input-icon">
         <input type="text" name="password" placeholder="Пароль">
         <img src="https://cdn-icons-png.flaticon.com/512/2665/2665240.png" alt="password">
     </div>
-
-    <!-- Вибір фото/відео -->
     <div class="input-icon">
-        <input type="text" id="file-name" placeholder="Виберіть файл..." readonly>
-        <input type="file" id="file-input" name="file"
-               accept=".png,.jpg,.jpeg,.gif,.bmp,.webp,.tiff,.svg,.mp4,.avi,.mov,.mkv,.wmv,.flv,.webm"
-               style="display:none;">
-        <img src="https://cdn-icons-png.flaticon.com/512/2206/2206449.png" alt="file"
-             onclick="document.getElementById('file-input').click();" style="cursor:pointer;">
+        <input type="text" id="file-name" placeholder="Виберіть фото..." readonly>
+        <input type="file" id="file-input" name="file" accept=".png,.jpg,.jpeg,.gif,.bmp,.webp,.tiff,.svg,.mp4,.avi,.mov,.mkv,.wmv,.flv,.webm" style="display:none;">
+        <img src="https://cdn-icons-png.flaticon.com/512/2206/2206449.png" alt="file" onclick="document.getElementById('file-input').click();" style="cursor:pointer;">
     </div>
-
-    <!-- Посилання на зовнішнє відео -->
     <div class="input-icon">
-        <input type="text" name="video_link" placeholder="Посилання на відео (YouTube/Instagram/Facebook/Drive/Dropbox)">
-        <img src="https://cdn-icons-png.flaticon.com/512/2875/2875384.png" alt="video">
+        <input type="text" name="youtube_link" placeholder="Посилання на YouTube / Instagram / Facebook / Cloud">
+        <img src="https://cdn-icons-png.flaticon.com/512/2875/2875384.png" alt="youtube">
     </div>
-
     <button type="submit" class="btn-purple">Додати</button>
 </form>
 
