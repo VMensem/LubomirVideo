@@ -26,24 +26,19 @@ def inject_now():
 def index():
     images = sorted([f for f in os.listdir(UPLOAD_FOLDER) if f.lower().endswith(tuple(IMAGE_EXTENSIONS))])
     videos = sorted([f for f in os.listdir(UPLOAD_FOLDER) if f.lower().endswith(tuple(VIDEO_EXTENSIONS))])
-    return render_template(
-        "index.html",
-        images=images,
-        videos=videos,
-        name=os.environ.get("PHOTOGRAPHER_NAME", "Любомир Казюк")
-    )
+    return render_template("index.html", images=images, videos=videos, name=os.environ.get("PHOTOGRAPHER_NAME","Любомир Казюк"))
 
 @app.route("/gallery")
 def gallery():
     files = os.listdir(UPLOAD_FOLDER)
 
-    video_links_file = os.path.join(UPLOAD_FOLDER, "video_links.txt")
-    video_links = []
-    if os.path.exists(video_links_file):
-        with open(video_links_file, "r", encoding="utf-8") as f:
-            video_links = [line.strip() for line in f.readlines() if line.strip()]
+    youtube_links = []
+    youtube_file_path = os.path.join(UPLOAD_FOLDER, "youtube_links.txt")
+    if os.path.exists(youtube_file_path):
+        with open(youtube_file_path, "r", encoding="utf-8") as f:
+            youtube_links = [line.strip() for line in f.readlines() if line.strip()]
 
-    return render_template("gallery.html", files=files, video_links=video_links)
+    return render_template("gallery.html", files=files, youtube_links=youtube_links)
 
 @app.route("/about")
 def about():
@@ -61,16 +56,16 @@ def upload():
 
         if login == os.environ.get("ADMIN_USER") and password == os.environ.get("ADMIN_PASSWORD"):
             file = request.files.get("file")
-            video_link = request.form.get("video_link")
+            youtube_link = request.form.get("youtube_link")
 
             if file and allowed_file(file.filename):
                 filename = secure_filename(file.filename)
                 file.save(os.path.join(UPLOAD_FOLDER, filename))
                 flash(f"Файл {filename} успішно завантажено!")
-            elif video_link:
-                with open(os.path.join(UPLOAD_FOLDER, "video_links.txt"), "a", encoding="utf-8") as f:
-                    f.write(video_link + "\n")
-                flash("Відео посилання додано!")
+            elif youtube_link:
+                with open(os.path.join(UPLOAD_FOLDER, "youtube_links.txt"), "a", encoding="utf-8") as f:
+                    f.write(youtube_link + "\n")
+                flash("YouTube відео додано!")
             else:
                 flash("Невірний тип файлу або файл/посилання не вибрано")
 
