@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
 <div class="gallery">
-    <!-- Локальные файлы -->
+    <!-- Локальные изображения и видео -->
     {% for file in files %}
         {% if file.lower().endswith(('png','jpg','jpeg','gif')) %}
             <img src="{{ url_for('static', filename='uploads/' + file) }}" class="thumb" onclick="openFullscreen(this)">
@@ -12,18 +12,20 @@
         {% endif %}
     {% endfor %}
 
-    <!-- Ссылки на видео -->
+    <!-- Внешние видео (YouTube, Instagram, Facebook, облака) -->
     {% for link in youtube_links %}
-        {% if "youtube.com" in link or "youtu.be" in link %}
+        {% if 'youtube.com' in link or 'youtu.be' in link %}
             <div class="youtube-video">
                 <iframe width="300" height="170" src="{{ link | replace('watch?v=', 'embed/') }}" frameborder="0" allowfullscreen></iframe>
             </div>
-        {% elif "instagram.com" in link %}
-            <blockquote class="instagram-media" data-instgrm-permalink="{{ link }}" data-instgrm-version="14" style="background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px rgba(0,0,0,0.5),0 1px 10px rgba(0,0,0,0.15); margin: 1px; max-width:540px; min-width:326px; padding:0; width:99.375%;">
+        {% elif 'instagram.com' in link %}
+            <blockquote class="instagram-media" data-instgrm-permalink="{{ link }}" data-instgrm-version="14" style="max-width:540px; width:100%; margin:10px auto;">
+                <a href="{{ link }}" target="_blank">Instagram video</a>
             </blockquote>
-        {% elif "facebook.com" in link %}
-            <iframe src="https://www.facebook.com/plugins/video.php?href={{ link }}&show_text=0&width=300" width="300" height="170" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen></iframe>
-        {% elif "drive.google.com" in link or "dropbox.com" in link %}
+        {% elif 'facebook.com' in link %}
+            <iframe src="https://www.facebook.com/plugins/video.php?href={{ link | urlencode }}&show_text=0&width=300" width="300" height="170" style="border:none;overflow:hidden;" scrolling="no" frameborder="0" allowfullscreen></iframe>
+        {% else %}
+            <!-- Прямые ссылки на облачные видео (Google Drive, Dropbox и др.) -->
             <video class="thumb" controls>
                 <source src="{{ link }}">
             </video>
@@ -31,6 +33,44 @@
     {% endfor %}
 </div>
 
-<!-- Скрипты для Instagram -->
+<!-- Скрипт для Instagram -->
 <script async src="//www.instagram.com/embed.js"></script>
+
+<script>
+// Функция fullscreen для изображений и видео
+function openFullscreen(el) {
+    const modal = document.createElement('div');
+    modal.classList.add('fullscreen-modal');
+    modal.style.position = 'fixed';
+    modal.style.top = 0;
+    modal.style.left = 0;
+    modal.style.width = '100%';
+    modal.style.height = '100%';
+    modal.style.background = 'rgba(0,0,0,0.9)';
+    modal.style.display = 'flex';
+    modal.style.alignItems = 'center';
+    modal.style.justifyContent = 'center';
+    modal.style.zIndex = 9999;
+
+    if(el.tagName === "IMG") {
+        const img = document.createElement('img');
+        img.src = el.src;
+        img.style.maxWidth = '90%';
+        img.style.maxHeight = '90%';
+        img.onclick = () => modal.remove();
+        modal.appendChild(img);
+    } else if(el.tagName === "VIDEO") {
+        const video = document.createElement('video');
+        video.src = el.querySelector('source').src;
+        video.controls = true;
+        video.autoplay = true;
+        video.style.maxWidth = '90%';
+        video.style.maxHeight = '90%';
+        video.onclick = () => modal.remove();
+        modal.appendChild(video);
+    }
+    document.body.appendChild(modal);
+}
+</script>
+
 {% endblock %}
