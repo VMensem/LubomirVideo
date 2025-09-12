@@ -5,17 +5,15 @@
         {% if file.lower().endswith(('png','jpg','jpeg','gif','bmp','webp','tiff','svg')) %}
             <img src="{{ url_for('static', filename='uploads/' + file) }}" class="thumb" onclick="openFullscreen(this)">
         {% elif file.lower().endswith(('mp4','avi','mov','mkv','wmv','flv','webm')) %}
-            <video class="thumb" onclick="openFullscreen(this)" controls width="300">
+            <video class="thumb" onclick="openFullscreen(this)" controls>
                 <source src="{{ url_for('static', filename='uploads/' + file) }}" type="video/mp4">
             </video>
         {% endif %}
     {% endfor %}
 
-    {% for link in video_links %}
+    {% for link in youtube_links %}
         <div class="youtube-video">
-            <iframe width="300" height="170"
-                    src="{{ link | replace('watch?v=', 'embed/') }}"
-                    frameborder="0" allowfullscreen></iframe>
+            <iframe width="300" height="170" src="{{ link | replace('watch?v=', 'embed/') }}" frameborder="0" allowfullscreen></iframe>
         </div>
     {% endfor %}
 </div>
