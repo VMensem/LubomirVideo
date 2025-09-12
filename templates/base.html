@@ -53,6 +53,12 @@ function openFullscreen(el) {
     document.body.appendChild(modal);
 }
 </script>
-
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    document.querySelectorAll(".gallery img").forEach(img => {
+        img.addEventListener("click", () => openFullscreen(img));
+    });
+});
+</script>
 </body>
 </html>
