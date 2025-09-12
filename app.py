@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, flash
+from flask import Flask, render_template, request, redirect, url_for, flash, session, jsonify
 import os
 from werkzeug.utils import secure_filename
 
@@ -14,7 +14,7 @@ IMAGE_EXTENSIONS = {"png", "jpg", "jpeg", "gif", "bmp", "webp", "tiff", "svg"}
 VIDEO_EXTENSIONS = {"mp4", "avi", "mov", "mkv", "wmv", "flv", "webm"}
 ALLOWED_EXTENSIONS = IMAGE_EXTENSIONS | VIDEO_EXTENSIONS
 
-# Файл для хранения ссылок на видео (YouTube, Instagram, Facebook, облака)
+# Файл для хранения видео-ссылок
 VIDEO_LINKS_FILE = os.path.join(UPLOAD_FOLDER, "video_links.txt")
 
 def allowed_file(filename: str) -> bool:
@@ -59,6 +59,7 @@ def upload():
         login = request.form.get("login")
         password = request.form.get("password")
         if login == os.environ.get("ADMIN_USER") and password == os.environ.get("ADMIN_PASSWORD"):
+            session["admin"] = True  # сохраняем сессию админа
             file = request.files.get("file")
             video_link = request.form.get("youtube_link")
             
@@ -68,7 +69,7 @@ def upload():
                 flash(f"Файл {filename} успішно завантажено!")
             elif video_link:
                 with open(VIDEO_LINKS_FILE, "a", encoding="utf-8") as f:
-                    f.write(video_link + "\n")
+                    f.write(video_link.strip() + "\n")
                 flash("Відео додано!")
             else:
                 flash("Невірний файл або посилання!")
@@ -77,7 +78,37 @@ def upload():
         else:
             flash("Невірний логін або пароль")
 
-    return render_template("upload.html")
+    return render_template("upload.html", is_admin=session.get("admin", False))
+
+@app.route("/delete_file/<filename>", methods=["POST"])
+def delete_file(filename):
+    if not session.get("admin"):
+        return "Unauthorized", 403
+    path = os.path.join(UPLOAD_FOLDER, filename)
+    if os.path.exists(path):
+        os.remove(path)
+    return '', 204
+
+@app.route("/delete_link", methods=["POST"])
+def delete_link():
+    if not session.get("admin"):
+        return "Unauthorized", 403
+    import json
+    data = json.loads(request.data)
+    link_to_delete = data.get("link")
+    if os.path.exists(VIDEO_LINKS_FILE):
+        with open(VIDEO_LINKS_FILE, "r", encoding="utf-8") as f:
+            lines = f.readlines()
+        lines = [l for l in lines if l.strip() != link_to_delete]
+        with open(VIDEO_LINKS_FILE, "w", encoding="utf-8") as f:
+            f.writelines(lines)
+    return '', 204
+
+@app.route("/logout")
+def logout():
+    session.pop("admin", None)
+    flash("Ви вийшли")
+    return redirect(url_for("upload"))
 
 if __name__ == "__main__":
     app.run(debug=True)
