@@ -1,9 +1,9 @@
 body {
-    background-color: #121212;
-    color: #fff;
-    font-family: 'Arial', sans-serif;
-    margin: 0;
-    padding: 0;
+  font-family: "Inter", "Roboto", Arial, sans-serif;
+  background: url('../background.png') no-repeat center center fixed;
+  background-size: cover;
+  color: var(--text-color);
+  line-height: 1.6;
 }
 
 .header-grid {
@@ -142,9 +142,15 @@ footer {
     gap: 10px;
     padding: 20px;
 }
-.gallery img.thumb,
+.gallery img.thumb {
+    width: 110%;
+    height: auto;
+    border-radius: 8px;
+    object-fit: cover;
+    cursor: pointer;
+}
 .gallery video.thumb {
-    width: 100%;
+    width: 150%;
     height: auto;
     border-radius: 8px;
     object-fit: cover;
