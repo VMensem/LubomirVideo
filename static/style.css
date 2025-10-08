@@ -1,4 +1,4 @@
-body {
+body, .main-content {
   background-image: url("background.png");
   background-repeat: no-repeat;
   background-position: center center; 
@@ -89,12 +89,6 @@ body {
 .btn-purple:hover {
     background-color: #610a0a;
     transform: scale(1.05);
-}
-/* Основний контент */
-.main-content {
-    padding: 20px;
-    background-color: #111;
-    color: #fff;
 }
 
 /* Footer */
