@@ -155,14 +155,14 @@ footer {
     padding: 50px;
 }
 .gallery img.thumb {
-    width: 150%;
+    width: 120%;
     height: auto;
     border-radius: 15px;
     object-fit: cover;
     cursor: pointer;
 }
 .gallery video.thumb {
-    width: 150%;
+    width: 180%;
     height: auto;
     border-radius: 25px;
     object-fit: cover;
