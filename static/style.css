@@ -15,7 +15,7 @@ body, .main-content {
     gap: 20px;
     padding: 20px;
 
-    background: rgba(0, 0, 0, 0.5); /* полупрозрачный фон */
+    background: transparent; /* полностью прозрачный */
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
@@ -101,7 +101,7 @@ body, .main-content {
 
 /* Footer */
 footer {
-    background: rgba(0, 0, 0, 0.5); /* полупрозрачный фон */
+    background: transparent; /* полностью прозрачный фон */
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     border-top: 1px solid rgba(255, 255, 255, 0.1);
