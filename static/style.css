@@ -150,8 +150,8 @@ footer {
 .gallery {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-    gap: 10px;
-    padding: 20px;
+    gap: 50px;
+    padding: 70px;
 }
 .gallery img.thumb {
     width: 150%;
@@ -163,7 +163,7 @@ footer {
 .gallery video.thumb {
     width: 200%;
     height: auto;
-    border-radius: 100px;
+    border-radius: 25px;
     object-fit: cover;
     cursor: pointer;
 }
