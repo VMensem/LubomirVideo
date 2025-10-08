@@ -1,9 +1,11 @@
 body {
-  font-family: "Inter", "Roboto", Arial, sans-serif;
-  background: url('../background.png') no-repeat center center fixed;
-  background-size: cover;
-  color: var(--text-color);
-  line-height: 1.6;
+  background-image: url("background.png");
+  background-repeat: no-repeat;
+  background-position: center center; 
+  background-size: cover; 
+  background-attachment: fixed;
+  background-color: #0b0b0b;
+  font-family: Arial, sans-serif;
 }
 
 .header-grid {
@@ -143,16 +145,16 @@ footer {
     padding: 20px;
 }
 .gallery img.thumb {
-    width: 110%;
+    width: 150%;
     height: auto;
-    border-radius: 8px;
+    border-radius: 15px;
     object-fit: cover;
     cursor: pointer;
 }
 .gallery video.thumb {
-    width: 150%;
+    width: 200%;
     height: auto;
-    border-radius: 8px;
+    border-radius: 15px;
     object-fit: cover;
     cursor: pointer;
 }
