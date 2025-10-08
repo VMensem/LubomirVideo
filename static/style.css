@@ -163,7 +163,7 @@ footer {
 .gallery video.thumb {
     width: 200%;
     height: auto;
-    border-radius: 15px;
+    border-radius: 100px;
     object-fit: cover;
     cursor: pointer;
 }
